@@ -1,0 +1,5068 @@
+{
+  "identities": [
+    {
+      "id": "ID-001",
+      "name": "Dr. S. K. Nayak",
+      "role": "Registrar",
+      "department": "Administration",
+      "official_email": "registrar@pmec.ac.in",
+      "approved_domain": "pmec.ac.in",
+      "approved_channels": [
+        "institutional_email",
+        "official_portal"
+      ],
+      "sensitivity_level": "EXECUTIVE",
+      "last_updated": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "ID-002",
+      "name": "Prof. B. C. Panda",
+      "role": "Principal / Director",
+      "department": "Office of the Principal",
+      "official_email": "principal@pmec.ac.in",
+      "approved_domain": "pmec.ac.in",
+      "approved_channels": [
+        "institutional_email",
+        "formal_circular"
+      ],
+      "sensitivity_level": "EXECUTIVE",
+      "last_updated": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "ID-003",
+      "name": "Examination Cell",
+      "role": "Controller of Examinations",
+      "department": "Examination Division",
+      "official_email": "exam.cell@bput.ac.in",
+      "approved_domain": "bput.ac.in",
+      "approved_channels": [
+        "institutional_email",
+        "bputexam.in"
+      ],
+      "sensitivity_level": "HIGH",
+      "last_updated": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "ID-004",
+      "name": "State Scholarship Section",
+      "role": "Nodal Officer (Scholarships)",
+      "department": "Student Affairs",
+      "official_email": "scholarships@pmec.ac.in",
+      "approved_domain": "pmec.ac.in",
+      "approved_channels": [
+        "institutional_email",
+        "official_portal"
+      ],
+      "sensitivity_level": "HIGH",
+      "last_updated": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "ID-005",
+      "name": "Campus IT Helpdesk",
+      "role": "Systems Administrator",
+      "department": "Computer Center",
+      "official_email": "helpdesk@pmec.ac.in",
+      "approved_domain": "pmec.ac.in",
+      "approved_channels": [
+        "institutional_email",
+        "internal_tickets"
+      ],
+      "sensitivity_level": "HIGH",
+      "last_updated": "2026-03-01T10:00:00Z"
+    }
+  ],
+  "domains": [
+    {
+      "id": "DOM-001",
+      "domain": "pmec.ac.in",
+      "organization": "Parala Maharaja Engineering College (PMEC Berhampur)",
+      "status": "OFFICIAL",
+      "is_primary": true,
+      "notes": "Primary institutional domain",
+      "dns_records": {
+        "spf": false,
+        "dkim": false,
+        "dmarc": false
+      },
+      "last_verified": "2026-10-08T18:58:19.125Z"
+    },
+    {
+      "id": "DOM-002",
+      "domain": "bput.ac.in",
+      "organization": "Biju Patnaik University of Technology (BPUT Odisha)",
+      "status": "OFFICIAL",
+      "is_primary": true,
+      "notes": "Affiliating state technical university"
+    },
+    {
+      "id": "DOM-003",
+      "domain": "bputexam.in",
+      "organization": "BPUT Examination Portal",
+      "status": "APPROVED_SERVICE",
+      "is_primary": false,
+      "notes": "Approved student exam registration & results portal"
+    },
+    {
+      "id": "DOM-004",
+      "domain": "scholarship.odisha.gov.in",
+      "organization": "Government of Odisha State Scholarship Portal",
+      "status": "APPROVED_SERVICE",
+      "is_primary": false,
+      "notes": "Verified state scholarship portal"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "EVT-DOM-WFYE-04",
+      "timestamp": "2026-10-08T18:58:08.482Z",
+      "source": "auth_guard",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 0,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "ip": "185.220.101.5",
+        "location": "Frankfurt, Germany",
+        "device": "HeadlessChrome on Linux"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "revoke_user_sessions",
+        "block_source_ip",
+        "require_stepup_mfa"
+      ],
+      "mitre": [
+        "T1078.004",
+        "T1110"
+      ],
+      "raw_input_summary": "Credential exploitation session from 185.220.101.5 following phishing lure targeting pmec.ac.in"
+    },
+    {
+      "event_id": "EVT-DOM-WFYE-03",
+      "timestamp": "2026-10-08T17:58:08.480Z",
+      "source": "identity_guard",
+      "classification": "executive_impersonation",
+      "confidence": 0.96,
+      "risk_score": 93,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "sender": "drsknayak-pmec@gmail.com",
+        "sender_domain": "gmail.com",
+        "claimed_identity": "Dr. S. K. Nayak",
+        "claimed_role": "Registrar"
+      },
+      "indicators": [
+        {
+          "id": "PROTECTED_IDENTITY_TARGET",
+          "name": "PROTECTED_IDENTITY_TARGET",
+          "description": "Communication references protected institutional authority \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 18,
+          "source": "identity_guard",
+          "evidence_data": {
+            "identity_id": "ID-001",
+            "role": "Registrar",
+            "department": "Administration",
+            "sensitivity": "EXECUTIVE"
+          }
+        },
+        {
+          "id": "IDENTITY_DOMAIN_MISMATCH",
+          "name": "IDENTITY_DOMAIN_MISMATCH",
+          "description": "Sender domain \"gmail.com\" does NOT match official domain \"pmec.ac.in\" registered for Registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "identity_guard",
+          "evidence_data": {
+            "claimed_role": "Registrar",
+            "sender_domain": "gmail.com",
+            "approved_domain": "pmec.ac.in",
+            "is_free_mail": true
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "name": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "description": "Channel \"email\" is not on the authorized broadcast whitelist for Registrar",
+          "severity": "high",
+          "weight": 24,
+          "source": "identity_guard",
+          "evidence_data": {
+            "channel": "email",
+            "approved_channels": [
+              "institutional_email",
+              "official_portal"
+            ]
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "PROTECTED_PERSONA_REFERENCED",
+          "name": "PROTECTED_PERSONA_REFERENCED",
+          "description": "Message explicitly references official university persona \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 14,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "persona_id": "ID-001",
+            "name": "Dr. S. K. Nayak",
+            "role": "Registrar"
+          }
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "flag_impersonator",
+        "warn_targeted_user"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586"
+      ],
+      "raw_input_summary": "Spoofed email from drsknayak-pmec@gmail.com impersonating Dr. S. K. Nayak (Registrar)",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-DOM-WFYE-02",
+      "timestamp": "2026-10-08T17:28:08.477Z",
+      "source": "url_analyzer",
+      "classification": "lookalike_domain",
+      "confidence": 0.9299999999999999,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-portal-auth-verification.xyz/login/verify.php",
+        "domain": "pmec-portal-auth-verification.xyz"
+      },
+      "indicators": [
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"pmec-portal-auth-verification.xyz\" closely mimics protected institutional domain \"pmec.ac.in\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "pmec-portal-auth-verification.xyz",
+            "official_domain": "pmec.ac.in",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "HIGH_RISK_TLD",
+          "name": "HIGH_RISK_TLD",
+          "description": "Domain uses top-level domain .xyz frequently associated with low-cost throwaway phishing assets",
+          "severity": "medium",
+          "weight": 16,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "tld": "xyz"
+          },
+          "mitre": [
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/login/verify.php\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/login/verify.php"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "add_to_dns_sinkhole"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586"
+      ],
+      "raw_input_summary": "Adversary Lookalike URL deployed mimicking pmec.ac.in: https://pmec-portal-auth-verification.xyz/login/verify.php",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-DOM-WFYE-01",
+      "timestamp": "2026-10-08T16:58:08.475Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.73,
+      "risk_score": 18,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "target_email": "student042@pmec.ac.in",
+        "sender": "security-notice@pmec-support-alert.xyz"
+      },
+      "indicators": [
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_message",
+        "warn_user"
+      ],
+      "mitre": [
+        "T1566"
+      ],
+      "raw_input_summary": "[URGENT NOTIFICATION] Parala Maharaja Engineering College (PMEC Berhampur) Official Advisory: Your institutional authentication access for pmec.ac.in has encountered critical synchronization failure. Immediate portal validation required within 4 hours."
+    },
+    {
+      "event_id": "EVT-MUZWBKW4-610",
+      "timestamp": "2026-10-08T18:54:44.356Z",
+      "source": "identity_guard",
+      "classification": "executive_impersonation",
+      "confidence": 0.96,
+      "risk_score": 93,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "sender": "drsknayak-urgent-desk@gmail.com",
+        "sender_domain": "gmail.com",
+        "claimed_identity": "Dr. S. K. Nayak",
+        "claimed_role": "Registrar"
+      },
+      "indicators": [
+        {
+          "id": "PROTECTED_IDENTITY_TARGET",
+          "name": "PROTECTED_IDENTITY_TARGET",
+          "description": "Communication references protected institutional authority \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 18,
+          "source": "identity_guard",
+          "evidence_data": {
+            "identity_id": "ID-001",
+            "role": "Registrar",
+            "department": "Administration",
+            "sensitivity": "EXECUTIVE"
+          }
+        },
+        {
+          "id": "IDENTITY_DOMAIN_MISMATCH",
+          "name": "IDENTITY_DOMAIN_MISMATCH",
+          "description": "Sender domain \"gmail.com\" does NOT match official domain \"pmec.ac.in\" registered for Registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "identity_guard",
+          "evidence_data": {
+            "claimed_role": "Registrar",
+            "sender_domain": "gmail.com",
+            "approved_domain": "pmec.ac.in",
+            "is_free_mail": true
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "name": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "description": "Channel \"email\" is not on the authorized broadcast whitelist for Registrar",
+          "severity": "high",
+          "weight": 24,
+          "source": "identity_guard",
+          "evidence_data": {
+            "channel": "email",
+            "approved_channels": [
+              "institutional_email",
+              "official_portal"
+            ]
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "PROTECTED_PERSONA_REFERENCED",
+          "name": "PROTECTED_PERSONA_REFERENCED",
+          "description": "Message explicitly references official university persona \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 14,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "persona_id": "ID-001",
+            "name": "Dr. S. K. Nayak",
+            "role": "Registrar"
+          }
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "warn_targeted_user",
+        "flag_impersonator",
+        "enforce_out_of_band_verification"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1566"
+      ],
+      "raw_input_summary": "Claimed: Dr. S. K. Nayak via email from drsknayak-urgent-desk@gmail.com",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZW52RX-780",
+      "timestamp": "2026-10-08T18:49:40.941Z",
+      "source": "url_analyzer",
+      "classification": "lookalike_domain",
+      "confidence": 0.9299999999999999,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://stanford-portal-auth.xyz/login",
+        "domain": "stanford-portal-auth.xyz"
+      },
+      "indicators": [
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"stanford-portal-auth.xyz\" closely mimics protected institutional domain \"stanford.edu\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "stanford-portal-auth.xyz",
+            "official_domain": "stanford.edu",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "HIGH_RISK_TLD",
+          "name": "HIGH_RISK_TLD",
+          "description": "Domain uses top-level domain .xyz frequently associated with low-cost throwaway phishing assets",
+          "severity": "medium",
+          "weight": 16,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "tld": "xyz"
+          },
+          "mitre": [
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/login\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/login"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        },
+        {
+          "id": "LIVE_PROBE_UNREACHABLE_HOST",
+          "name": "LIVE_PROBE_UNREACHABLE_HOST",
+          "description": "Live DNS/HTTP probe failed: fetch failed. Characteristic of burned or transient phishing infrastructure",
+          "severity": "medium",
+          "weight": 15,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "error": "fetch failed"
+          },
+          "mitre": [
+            "T1566.002"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "add_to_dns_sinkhole",
+        "notify_security_analyst"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1056"
+      ],
+      "raw_input_summary": "Observed URL: https://stanford-portal-auth.xyz/login",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZW4QC4-477",
+      "timestamp": "2026-10-08T18:49:24.820Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.99,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://stanford.edu/admissions",
+        "domain": "stanford.edu"
+      },
+      "indicators": [
+        {
+          "id": "VERIFIED_INSTITUTIONAL_DOMAIN",
+          "name": "VERIFIED_INSTITUTIONAL_DOMAIN",
+          "description": "Domain stanford.edu matches official verified institutional trust registry",
+          "severity": "low",
+          "weight": 0,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "domain": "stanford.edu",
+            "registry_status": "OFFICIAL"
+          }
+        }
+      ],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://stanford.edu/admissions"
+    },
+    {
+      "event_id": "EVT-MUZSQD96-929",
+      "timestamp": "2026-10-08T17:14:15.834Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://meet.google.com/gij-bxph-rda",
+        "domain": "meet.google.com"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://meet.google.com/gij-bxph-rda"
+    },
+    {
+      "event_id": "EVT-MUZSM7HL-295",
+      "timestamp": "2026-10-08T17:11:01.737Z",
+      "source": "url_analyzer",
+      "classification": "lookalike_domain",
+      "confidence": 0.92,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-exam-support.com/student/auth-login",
+        "domain": "pmec-exam-support.com"
+      },
+      "indicators": [
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"pmec-exam-support.com\" closely mimics protected institutional domain \"pmec.ac.in\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "pmec-exam-support.com",
+            "official_domain": "pmec.ac.in",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/student/auth-login\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/student/auth-login"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        },
+        {
+          "id": "LIVE_PROBE_UNREACHABLE_HOST",
+          "name": "LIVE_PROBE_UNREACHABLE_HOST",
+          "description": "Live DNS/HTTP probe failed: fetch failed. Characteristic of burned or transient phishing infrastructure",
+          "severity": "medium",
+          "weight": 15,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "error": "fetch failed"
+          },
+          "mitre": [
+            "T1566.002"
+          ]
+        },
+        {
+          "id": "HOMOGLYPH_BRAND_HIJACK",
+          "name": "Brand Token Hijacking",
+          "description": "Institutional brand \"pmec\" combined with exam/support lure on external registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "domain": "https://pmec-exam-support.com/student/auth-login"
+          }
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "add_to_dns_sinkhole",
+        "notify_security_analyst"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1056"
+      ],
+      "raw_input_summary": "Observed URL: https://pmec-exam-support.com/student/auth-login",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZSJVCS-152",
+      "timestamp": "2026-10-08T17:09:12.700Z",
+      "source": "message_analyzer",
+      "classification": "credential_phishing",
+      "confidence": 0.88,
+      "risk_score": 72,
+      "severity": "HIGH",
+      "entities": {
+        "user_id": "student042",
+        "sender": "+91-9876543210"
+      },
+      "indicators": [
+        {
+          "id": "COERCION_URGENCY_TRIGGER",
+          "name": "Coercive Urgency Pattern",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "high",
+          "weight": 25,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "excerpt": "URGENT: This is State Bank of India fraud desk. Your account"
+          }
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_message",
+        "warn_recipient",
+        "block_external_domain"
+      ],
+      "mitre": [],
+      "raw_input_summary": "URGENT: This is State Bank of India fraud desk. Your account is locked due to suspicious UPI debit of Rs 98,500. Click h...",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZSJI5W-428",
+      "timestamp": "2026-10-08T17:08:55.604Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 28,
+      "severity": "LOW",
+      "entities": {
+        "user_id": "student042",
+        "url": "http://non-existent-phish-999.xyz",
+        "domain": "non-existent-phish-999.xyz"
+      },
+      "indicators": [
+        {
+          "id": "HIGH_RISK_TLD",
+          "name": "HIGH_RISK_TLD",
+          "description": "Domain uses top-level domain .xyz frequently associated with low-cost throwaway phishing assets",
+          "severity": "medium",
+          "weight": 16,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "tld": "xyz"
+          },
+          "mitre": [
+            "T1586"
+          ]
+        },
+        {
+          "id": "LIVE_PROBE_UNREACHABLE_HOST",
+          "name": "LIVE_PROBE_UNREACHABLE_HOST",
+          "description": "Live DNS/HTTP probe failed: fetch failed. Characteristic of burned or transient phishing infrastructure",
+          "severity": "medium",
+          "weight": 15,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "error": "fetch failed"
+          },
+          "mitre": [
+            "T1566.002"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "add_to_dns_sinkhole",
+        "notify_security_analyst"
+      ],
+      "mitre": [
+        "T1586",
+        "T1566.002"
+      ],
+      "raw_input_summary": "Observed URL: http://non-existent-phish-999.xyz",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZSJ163-755",
+      "timestamp": "2026-10-08T17:08:33.579Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://example.com",
+        "domain": "example.com"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://example.com"
+    },
+    {
+      "event_id": "EVT-MUZSIB2O-78",
+      "timestamp": "2026-10-08T17:07:59.760Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://example.com",
+        "domain": "unknown"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://example.com"
+    },
+    {
+      "event_id": "EVT-MUZSGQO9-118",
+      "timestamp": "2026-10-08T17:06:46.665Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://example.com",
+        "domain": "unknown"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://example.com"
+    },
+    {
+      "event_id": "EVT-MUZRYS59-787",
+      "timestamp": "2026-10-08T16:52:48.765Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 89,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.22%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.22,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: Wire Transfer Authorization (Voice Clone) [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZRU577-612",
+      "timestamp": "2026-10-08T16:49:12.403Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 87,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Tripathy",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.33%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.32606283891397186,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: VC Voice Clone [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZRU56X-151",
+      "timestamp": "2026-10-08T16:49:12.393Z",
+      "source": "fake_login_detector",
+      "classification": "credential_harvesting",
+      "confidence": 0.95,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-login.fake.org"
+      },
+      "indicators": [
+        {
+          "id": "UNAUTHORIZED_LOGIN_HOST",
+          "name": "UNAUTHORIZED_LOGIN_HOST",
+          "description": "Domain \"pmec-login.fake.org\" is not an authorized institutional domain for \"PMEC / BPUT Academic Portal\"",
+          "severity": "critical",
+          "weight": 35,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "domain": "pmec-login.fake.org",
+            "claimedBrand": "PMEC / BPUT Academic Portal"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "CREDENTIAL_FORM_EXPOSURE",
+          "name": "CREDENTIAL_FORM_EXPOSURE",
+          "description": "Active authentication submission form rendered on non-institutional origin",
+          "severity": "high",
+          "weight": 25,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "hasLoginForm": true,
+            "credentialsSolicited": [
+              "Password",
+              "One-Time Password (OTP)"
+            ]
+          },
+          "mitre": [
+            "T1056.001"
+          ]
+        },
+        {
+          "id": "MFA_BYPASS_HARVESTING",
+          "name": "MFA_BYPASS_HARVESTING",
+          "description": "Secondary MFA / OTP input token field detected on deceptive landing interface",
+          "severity": "critical",
+          "weight": 30,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "hasOtpField": true
+          },
+          "mitre": [
+            "T1539",
+            "T1110"
+          ]
+        },
+        {
+          "id": "CROSS_DOMAIN_CREDENTIAL_EXFIL",
+          "name": "CROSS_DOMAIN_CREDENTIAL_EXFIL",
+          "description": "Form action points to external exfiltration endpoint: http://stealer.ru/post",
+          "severity": "critical",
+          "weight": 30,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "form_action_target": "http://stealer.ru/post"
+          },
+          "mitre": [
+            "T1041"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "takedown_request",
+        "warn_campus_community"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1056.001",
+        "T1539",
+        "T1110",
+        "T1041"
+      ],
+      "raw_input_summary": "Deceptive Login Portal check: https://pmec-login.fake.org",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZRU56P-132",
+      "timestamp": "2026-10-08T16:49:12.385Z",
+      "source": "auth_guard",
+      "classification": "impossible_travel",
+      "confidence": 0.93,
+      "risk_score": 63,
+      "severity": "HIGH",
+      "entities": {
+        "user_id": "s1",
+        "ip": "2.2.2.2",
+        "device": "mac",
+        "location": "IN"
+      },
+      "indicators": [
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"s1\" authenticated from unrecognized client device \"hydra\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "s1",
+            "observed_device": "hydra",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"s1\" authenticated from unrecognized client device \"mac\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "s1",
+            "observed_device": "mac",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "name": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "description": "Impossible geographic relocation for s1: DE to IN (5629 km in 0.1 hrs = 67548 km/h)",
+          "severity": "critical",
+          "weight": 34,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "s1",
+            "origin": "DE",
+            "destination": "IN",
+            "distance_km": 5629,
+            "elapsed_hours": 0.08333333333333333,
+            "implied_speed_kmh": 67548
+          },
+          "mitre": [
+            "T1078"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "revoke_user_sessions",
+        "force_password_reset",
+        "require_stepup_mfa",
+        "block_source_ip"
+      ],
+      "mitre": [
+        "T1078.003",
+        "T1078"
+      ],
+      "raw_input_summary": "Analyzed batch of 2 authentication attempts",
+      "incident_id": "CG-0002"
+    },
+    {
+      "event_id": "EVT-MUZRU56E-618",
+      "timestamp": "2026-10-08T16:49:12.374Z",
+      "source": "identity_guard",
+      "classification": "social_engineering",
+      "confidence": 0.88,
+      "risk_score": 25,
+      "severity": "LOW",
+      "entities": {
+        "user_id": "student042",
+        "sender": "principal@gmail.com",
+        "sender_domain": "gmail.com",
+        "claimed_identity": "Principal PMEC"
+      },
+      "indicators": [
+        {
+          "id": "UNVERIFIED_EXTERNAL_SENDER",
+          "name": "UNVERIFIED_EXTERNAL_SENDER",
+          "description": "Sender \"principal@gmail.com\" originates outside the institutional trust perimeter",
+          "severity": "low",
+          "weight": 8,
+          "source": "identity_guard",
+          "evidence_data": {
+            "sender_address": "principal@gmail.com"
+          }
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "warn_targeted_user",
+        "flag_impersonator",
+        "enforce_out_of_band_verification"
+      ],
+      "mitre": [
+        "T1566"
+      ],
+      "raw_input_summary": "Claimed: Principal PMEC via whatsapp from principal@gmail.com",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZRU563-136",
+      "timestamp": "2026-10-08T16:49:12.363Z",
+      "source": "qr_decoder",
+      "classification": "qr_phishing",
+      "confidence": 0.9299999999999999,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://bput-exam-desk.xyz/verify",
+        "domain": "bput-exam-desk.xyz"
+      },
+      "indicators": [
+        {
+          "id": "QR_OBFUSCATED_VECTOR",
+          "name": "QR_OBFUSCATED_VECTOR",
+          "description": "Physical or digital QR vector bypasses standard text-based mail filters and hides destination URL from preview",
+          "severity": "medium",
+          "weight": 15,
+          "source": "qr_decoder",
+          "evidence_data": {
+            "raw_qr_payload": "https://bput-exam-desk.xyz/verify",
+            "extracted_destination": "https://bput-exam-desk.xyz/verify",
+            "normalized_domain": "bput-exam-desk.xyz"
+          },
+          "mitre": [
+            "T1204.001",
+            "T1566.002"
+          ]
+        },
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"bput-exam-desk.xyz\" closely mimics protected institutional domain \"bput.ac.in\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "bput-exam-desk.xyz",
+            "official_domain": "bput.ac.in",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "HIGH_RISK_TLD",
+          "name": "HIGH_RISK_TLD",
+          "description": "Domain uses top-level domain .xyz frequently associated with low-cost throwaway phishing assets",
+          "severity": "medium",
+          "weight": 16,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "tld": "xyz"
+          },
+          "mitre": [
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/verify\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/verify"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_destination_url",
+        "sinkhole_domain",
+        "alert_campus_safety"
+      ],
+      "mitre": [
+        "T1204.001",
+        "T1566.002",
+        "T1586",
+        "T1056"
+      ],
+      "raw_input_summary": "Decoded QR code directing to: https://bput-exam-desk.xyz/verify",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUZRU55S-756",
+      "timestamp": "2026-10-08T16:49:12.352Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "http://pmec-verify-student.net/login",
+        "domain": "unknown"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: http://pmec-verify-student.net/login"
+    },
+    {
+      "event_id": "EVT-MUZRTZEE-811",
+      "timestamp": "2026-10-08T16:49:04.886Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.88,
+      "risk_score": 12,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "sender": "external-inbound"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Empty message"
+    },
+    {
+      "event_id": "EVT-MUWZ3LLZ-825",
+      "timestamp": "2026-10-06T17:49:12.359Z",
+      "source": "fake_login_detector",
+      "classification": "credential_harvesting",
+      "confidence": 0.95,
+      "risk_score": 63,
+      "severity": "HIGH",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-login-help.net",
+        "claimed_identity": "PMEC Portal"
+      },
+      "indicators": [
+        {
+          "id": "UNAUTHORIZED_LOGIN_HOST",
+          "name": "UNAUTHORIZED_LOGIN_HOST",
+          "description": "Domain \"pmec-login-help.net\" is not an authorized institutional domain for \"PMEC Portal\"",
+          "severity": "critical",
+          "weight": 35,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "domain": "pmec-login-help.net",
+            "claimedBrand": "PMEC Portal"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "CREDENTIAL_FORM_EXPOSURE",
+          "name": "CREDENTIAL_FORM_EXPOSURE",
+          "description": "Active authentication submission form rendered on non-institutional origin",
+          "severity": "high",
+          "weight": 25,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "hasLoginForm": true,
+            "credentialsSolicited": [
+              "Password"
+            ]
+          },
+          "mitre": [
+            "T1056.001"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "takedown_request",
+        "warn_campus_community"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1056.001"
+      ],
+      "raw_input_summary": "Deceptive Login Portal check: https://pmec-login-help.net",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWZ3LLF-975",
+      "timestamp": "2026-10-06T17:49:12.339Z",
+      "source": "identity_guard",
+      "classification": "executive_impersonation",
+      "confidence": 0.96,
+      "risk_score": 79,
+      "severity": "HIGH",
+      "entities": {
+        "user_id": "student042",
+        "sender": "vc.pmec.official@gmail.com",
+        "sender_domain": "gmail.com",
+        "claimed_identity": "Vice Chancellor",
+        "claimed_role": "Principal / Director"
+      },
+      "indicators": [
+        {
+          "id": "PROTECTED_IDENTITY_TARGET",
+          "name": "PROTECTED_IDENTITY_TARGET",
+          "description": "Communication references protected institutional authority \"Prof. B. C. Panda\" (Principal / Director, Office of the Principal)",
+          "severity": "high",
+          "weight": 18,
+          "source": "identity_guard",
+          "evidence_data": {
+            "identity_id": "ID-002",
+            "role": "Principal / Director",
+            "department": "Office of the Principal",
+            "sensitivity": "EXECUTIVE"
+          }
+        },
+        {
+          "id": "IDENTITY_DOMAIN_MISMATCH",
+          "name": "IDENTITY_DOMAIN_MISMATCH",
+          "description": "Sender domain \"gmail.com\" does NOT match official domain \"pmec.ac.in\" registered for Principal / Director",
+          "severity": "critical",
+          "weight": 35,
+          "source": "identity_guard",
+          "evidence_data": {
+            "claimed_role": "Principal / Director",
+            "sender_domain": "gmail.com",
+            "approved_domain": "pmec.ac.in",
+            "is_free_mail": true
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "name": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "description": "Channel \"whatsapp\" is not on the authorized broadcast whitelist for Principal / Director",
+          "severity": "high",
+          "weight": 24,
+          "source": "identity_guard",
+          "evidence_data": {
+            "channel": "whatsapp",
+            "approved_channels": [
+              "institutional_email",
+              "formal_circular"
+            ]
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "warn_targeted_user",
+        "flag_impersonator",
+        "enforce_out_of_band_verification"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1566"
+      ],
+      "raw_input_summary": "Claimed: Vice Chancellor via whatsapp from vc.pmec.official@gmail.com",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWZ3LKX-176",
+      "timestamp": "2026-10-06T17:49:12.321Z",
+      "source": "url_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.92,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-portal-login.info/auth",
+        "domain": "unknown"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://pmec-portal-login.info/auth"
+    },
+    {
+      "event_id": "EVT-MUWZ3ITP-615",
+      "timestamp": "2026-10-06T17:49:08.749Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.88,
+      "risk_score": 12,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "sender": "external-inbound"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Empty message"
+    },
+    {
+      "event_id": "EVT-MUWZ33NI-687",
+      "timestamp": "2026-10-06T17:48:49.086Z",
+      "source": "deepfake_audio",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Dr. Rashmi Rekha Sahoo"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic",
+        "record_biometric_reference_anchor"
+      ],
+      "mitre": [],
+      "raw_input_summary": "AUDIO Deepfake Forensics: Authentic Voice Registrar [AUTHENTIC_BIOMETRIC]"
+    },
+    {
+      "event_id": "EVT-MUWZ2ZW8-997",
+      "timestamp": "2026-10-06T17:48:44.216Z",
+      "source": "deepfake_video",
+      "classification": "deepfake_video",
+      "confidence": 0.96,
+      "risk_score": 90,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "VIDEO_RPPG_LIVENESS_PULSE_ABSENT",
+          "name": "Absence of Biological Blood Volume Pulse (rPPG)",
+          "description": "Microscopic spectral analysis of facial capillary pixel oscillation failed to detect physiological cardiac pulse signature (rPPG confidence 8.4%).",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "rppg_confidence": 8.4,
+            "detected_pulse_bpm": 0
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_FACIAL_BOUNDARY_WARPING",
+          "name": "Facial Boundary Latent Warping Artifacts",
+          "description": "High-frequency gradient discontinuity detected along jawline and hairline perimeter consistent with Poisson blending and masked face-swapping.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "boundary_warp_score": 91.2,
+            "gan_frequency_checkerboard": 88
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_LIP_SYNC_DESYNCHRONIZATION",
+          "name": "Phoneme-Viseme Acoustic Desynchronization",
+          "description": "Calculated temporal latency of 180ms between bilabial plosive audio consonants (/p/, /b/, /m/) and visual mouth closure keyframes.",
+          "severity": "high",
+          "weight": 25,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "lip_sync_congruence": 24.5,
+            "method": "High-Resolution Latent Face-Swap (Diffusion Inpainting / SimSwap)"
+          },
+          "mitre": [
+            "T1656",
+            "T1566.004"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "VIDEO Deepfake Forensics: Face Swap Exam Video [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWZ2WB2-378",
+      "timestamp": "2026-10-06T17:48:39.566Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 83,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.31%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.308925619961249,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: AI Voice Clone VC [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY8K5Z-964",
+      "timestamp": "2026-10-06T17:25:04.151Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 92,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.18%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.18021294280529546,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY8HXR-386",
+      "timestamp": "2026-10-06T17:25:01.263Z",
+      "source": "deepfake_video",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Student Senate Representative"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic",
+        "record_biometric_reference_anchor"
+      ],
+      "mitre": [],
+      "raw_input_summary": "VIDEO Deepfake Forensics: Authentic Video: Student Council President Campus Briefing [AUTHENTIC_BIOMETRIC]"
+    },
+    {
+      "event_id": "EVT-MUWY8AAX-785",
+      "timestamp": "2026-10-06T17:24:51.369Z",
+      "source": "deepfake_audio",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Dr. Rashmi Rekha Sahoo (Registrar)"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic",
+        "record_biometric_reference_anchor"
+      ],
+      "mitre": [],
+      "raw_input_summary": "AUDIO Deepfake Forensics: Authentic Voice: Registrar Official Convocation Address [AUTHENTIC_BIOMETRIC]"
+    },
+    {
+      "event_id": "EVT-MUWY7UR3-159",
+      "timestamp": "2026-10-06T17:24:31.215Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 88,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.25%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.2537585189268262,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY7SJ8-724",
+      "timestamp": "2026-10-06T17:24:28.340Z",
+      "source": "deepfake_video",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Student Senate Representative"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic",
+        "record_biometric_reference_anchor"
+      ],
+      "mitre": [],
+      "raw_input_summary": "VIDEO Deepfake Forensics: Authentic Video: Student Council President Campus Briefing [AUTHENTIC_BIOMETRIC]"
+    },
+    {
+      "event_id": "EVT-MUWY7QZ9-161",
+      "timestamp": "2026-10-06T17:24:26.325Z",
+      "source": "deepfake_audio",
+      "classification": "legitimate",
+      "confidence": 0.98,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Dr. Rashmi Rekha Sahoo (Registrar)"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic",
+        "record_biometric_reference_anchor"
+      ],
+      "mitre": [],
+      "raw_input_summary": "AUDIO Deepfake Forensics: Authentic Voice: Registrar Official Convocation Address [AUTHENTIC_BIOMETRIC]"
+    },
+    {
+      "event_id": "EVT-MUWY7PZN-681",
+      "timestamp": "2026-10-06T17:24:25.043Z",
+      "source": "deepfake_video",
+      "classification": "deepfake_video",
+      "confidence": 0.96,
+      "risk_score": 90,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "VIDEO_RPPG_LIVENESS_PULSE_ABSENT",
+          "name": "Absence of Biological Blood Volume Pulse (rPPG)",
+          "description": "Microscopic spectral analysis of facial capillary pixel oscillation failed to detect physiological cardiac pulse signature (rPPG confidence 8.4%).",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "rppg_confidence": 8.4,
+            "detected_pulse_bpm": 0
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_FACIAL_BOUNDARY_WARPING",
+          "name": "Facial Boundary Latent Warping Artifacts",
+          "description": "High-frequency gradient discontinuity detected along jawline and hairline perimeter consistent with Poisson blending and masked face-swapping.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "boundary_warp_score": 91.2,
+            "gan_frequency_checkerboard": 88
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_LIP_SYNC_DESYNCHRONIZATION",
+          "name": "Phoneme-Viseme Acoustic Desynchronization",
+          "description": "Calculated temporal latency of 180ms between bilabial plosive audio consonants (/p/, /b/, /m/) and visual mouth closure keyframes.",
+          "severity": "high",
+          "weight": 25,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "lip_sync_congruence": 24.5,
+            "method": "High-Resolution Latent Face-Swap (Diffusion Inpainting / SimSwap)"
+          },
+          "mitre": [
+            "T1656",
+            "T1566.004"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "VIDEO Deepfake Forensics: Video Deepfake: Spoofed Exam Postponement Press Video [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY7K48-950",
+      "timestamp": "2026-10-06T17:24:17.432Z",
+      "source": "deepfake_video",
+      "classification": "deepfake_video",
+      "confidence": 0.96,
+      "risk_score": 93,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "VIDEO_RPPG_LIVENESS_PULSE_ABSENT",
+          "name": "Absence of Biological Blood Volume Pulse (rPPG)",
+          "description": "Microscopic spectral analysis of facial capillary pixel oscillation failed to detect physiological cardiac pulse signature (rPPG confidence 8.4%).",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "rppg_confidence": 8.4,
+            "detected_pulse_bpm": 0
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_FACIAL_BOUNDARY_WARPING",
+          "name": "Facial Boundary Latent Warping Artifacts",
+          "description": "High-frequency gradient discontinuity detected along jawline and hairline perimeter consistent with Poisson blending and masked face-swapping.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "boundary_warp_score": 91.2,
+            "gan_frequency_checkerboard": 88
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_LIP_SYNC_DESYNCHRONIZATION",
+          "name": "Phoneme-Viseme Acoustic Desynchronization",
+          "description": "Calculated temporal latency of 180ms between bilabial plosive audio consonants (/p/, /b/, /m/) and visual mouth closure keyframes.",
+          "severity": "high",
+          "weight": 25,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "lip_sync_congruence": 24.5,
+            "method": "High-Resolution Latent Face-Swap (Diffusion Inpainting / SimSwap)"
+          },
+          "mitre": [
+            "T1656",
+            "T1566.004"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "VIDEO Deepfake Forensics: Uploaded Sample: gemini_generated_video_c5e39b5f.mp4 [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY6Q80-211",
+      "timestamp": "2026-10-06T17:23:38.688Z",
+      "source": "deepfake_audio",
+      "classification": "deepfake_audio",
+      "confidence": 0.96,
+      "risk_score": 92,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "claimed_identity": "Prof. Chittaranjan Tripathy (Vice Chancellor)",
+        "claimed_role": "Institutional Executive"
+      },
+      "indicators": [
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.26%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.26448908089465273,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_deepfake_broadcast",
+        "issue_institutional_spoofing_warning",
+        "block_inbound_voip_source",
+        "require_in_person_biometric_confirmation"
+      ],
+      "mitre": [
+        "T1566.004",
+        "T1656",
+        "T1056"
+      ],
+      "raw_input_summary": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY4T6W-692",
+      "timestamp": "2026-10-06T17:22:09.224Z",
+      "source": "url_analyzer",
+      "classification": "lookalike_domain",
+      "confidence": 0.92,
+      "risk_score": 85,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-exam-support.com/student/auth-login",
+        "domain": "unknown"
+      },
+      "indicators": [
+        {
+          "id": "HOMOGLYPH_BRAND_HIJACK",
+          "name": "Brand Token Hijacking",
+          "description": "Institutional brand \"pmec\" combined with exam/support lure on external registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "domain": "https://pmec-exam-support.com/student/auth-login"
+          }
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "add_to_dns_sinkhole",
+        "notify_security_analyst"
+      ],
+      "mitre": [],
+      "raw_input_summary": "Observed URL: https://pmec-exam-support.com/student/auth-login",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-MUWY1RSL-530",
+      "timestamp": "2026-10-06T17:19:47.445Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.88,
+      "risk_score": 12,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "sender": "external-inbound"
+      },
+      "indicators": [],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "hi bro , whatsup"
+    },
+    {
+      "event_id": "EVT-CAM-05",
+      "timestamp": "2026-10-08T18:39:26.498Z",
+      "source": "auth_guard",
+      "classification": "account_takeover_risk",
+      "confidence": 0.93,
+      "risk_score": 84,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "ip": "194.26.29.112",
+        "device": "Firefox on Linux (Kali)",
+        "location": "Bucharest, Romania"
+      },
+      "indicators": [
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student042\" authenticated from unrecognized client device \"Firefox on Linux (Kali)\" (Baseline: \"Chrome on macOS (MacBook Pro)\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "observed_device": "Firefox on Linux (Kali)",
+            "baseline_device": "Chrome on macOS (MacBook Pro)"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "name": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "description": "Impossible geographic relocation for student042: Berhampur, Odisha, IN to Bucharest, Romania (6052 km in 0.6 hrs = 10087 km/h)",
+          "severity": "critical",
+          "weight": 34,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "origin": "Berhampur, Odisha, IN",
+            "destination": "Bucharest, Romania",
+            "distance_km": 6052,
+            "elapsed_hours": 0.6,
+            "implied_speed_kmh": 10087
+          },
+          "mitre": [
+            "T1078"
+          ]
+        },
+        {
+          "id": "ACCOUNT_TAKEOVER_BEHAVIOR",
+          "name": "ACCOUNT_TAKEOVER_BEHAVIOR",
+          "description": "Brute force progression: 3 consecutive authentication failures followed by immediate valid session compromise from Bucharest, Romania",
+          "severity": "critical",
+          "weight": 38,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "failures": 3,
+            "compromise_ip": "194.26.29.112",
+            "compromise_location": "Bucharest, Romania"
+          },
+          "mitre": [
+            "T1110",
+            "T1078"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "revoke_sessions",
+        "force_password_reset",
+        "require_hardware_mfa"
+      ],
+      "mitre": [
+        "T1078",
+        "T1110",
+        "T1056"
+      ],
+      "raw_input_summary": "Impossible travel anomaly (Berhampur -> Bucharest in 36m, 9200km/h) followed by valid session takeover",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-CAM-04",
+      "timestamp": "2026-10-08T17:15:26.497Z",
+      "source": "auth_guard",
+      "classification": "password_spraying",
+      "confidence": 0.99,
+      "risk_score": 91,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "ip": "185.220.101.4",
+        "device": "Hydra/9.2",
+        "location": "Frankfurt, Germany"
+      },
+      "indicators": [
+        {
+          "id": "PASSWORD_SPRAYING_ATTACK",
+          "name": "PASSWORD_SPRAYING_ATTACK",
+          "description": "Source IP 185.220.101.4 targeted 4 distinct institutional accounts (student041, student042, student043, student044) with 4 credential attempts",
+          "severity": "critical",
+          "weight": 32,
+          "source": "auth_guard",
+          "evidence_data": {
+            "ip": "185.220.101.4",
+            "distinct_accounts_count": 4,
+            "targeted_accounts": [
+              "student041",
+              "student042",
+              "student043",
+              "student044"
+            ],
+            "failure_count": 4
+          },
+          "mitre": [
+            "T1110.003"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student041\" authenticated from unrecognized client device \"Hydra/9.2\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student041",
+            "observed_device": "Hydra/9.2",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student042\" authenticated from unrecognized client device \"Hydra/9.2\" (Baseline: \"Chrome on macOS (MacBook Pro)\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "observed_device": "Hydra/9.2",
+            "baseline_device": "Chrome on macOS (MacBook Pro)"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student043\" authenticated from unrecognized client device \"Hydra/9.2\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student043",
+            "observed_device": "Hydra/9.2",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student044\" authenticated from unrecognized client device \"Hydra/9.2\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student044",
+            "observed_device": "Hydra/9.2",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_ip",
+        "enforce_mfa"
+      ],
+      "mitre": [
+        "T1110.003"
+      ],
+      "raw_input_summary": "Distributed password spraying targeting multiple student accounts from 185.220.101.4",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-CAM-03",
+      "timestamp": "2026-10-08T16:45:26.496Z",
+      "source": "identity_guard",
+      "classification": "executive_impersonation",
+      "confidence": 0.96,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "sender": "registrar-pmec-support@gmail.com",
+        "sender_domain": "gmail.com",
+        "claimed_identity": "Dr. S. K. Nayak",
+        "claimed_role": "Registrar"
+      },
+      "indicators": [
+        {
+          "id": "PROTECTED_IDENTITY_TARGET",
+          "name": "PROTECTED_IDENTITY_TARGET",
+          "description": "Communication references protected institutional authority \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 18,
+          "source": "identity_guard",
+          "evidence_data": {
+            "identity_id": "ID-001",
+            "role": "Registrar",
+            "department": "Administration",
+            "sensitivity": "EXECUTIVE"
+          }
+        },
+        {
+          "id": "IDENTITY_DOMAIN_MISMATCH",
+          "name": "IDENTITY_DOMAIN_MISMATCH",
+          "description": "Sender domain \"gmail.com\" does NOT match official domain \"pmec.ac.in\" registered for Registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "identity_guard",
+          "evidence_data": {
+            "claimed_role": "Registrar",
+            "sender_domain": "gmail.com",
+            "approved_domain": "pmec.ac.in",
+            "is_free_mail": true
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "name": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "description": "Channel \"whatsapp\" is not on the authorized broadcast whitelist for Registrar",
+          "severity": "high",
+          "weight": 24,
+          "source": "identity_guard",
+          "evidence_data": {
+            "channel": "whatsapp",
+            "approved_channels": [
+              "institutional_email",
+              "official_portal"
+            ]
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "OTP_SOLICITATION",
+          "name": "OTP_SOLICITATION",
+          "description": "Direct solicitation of One-Time Password / Multi-Factor Authentication token (Targeting Institutional Identity)",
+          "severity": "critical",
+          "weight": 46,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "OTP_SOLICITATION"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1539"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "warn_user",
+        "flag_impersonator"
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1539"
+      ],
+      "raw_input_summary": "Executive Identity Spoofing (Registrar) over unapproved WhatsApp channel demanding OTP",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-CAM-02",
+      "timestamp": "2026-10-08T16:15:26.493Z",
+      "source": "qr_decoder",
+      "classification": "qr_phishing",
+      "confidence": 0.86,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "entities": {
+        "user_id": "student042",
+        "url": "https://pmec-exam-support.com/student-portal/auth-verify",
+        "domain": "pmec-exam-support.com"
+      },
+      "indicators": [
+        {
+          "id": "QR_OBFUSCATED_VECTOR",
+          "name": "QR_OBFUSCATED_VECTOR",
+          "description": "Physical or digital QR vector bypasses standard text-based mail filters and hides destination URL from preview",
+          "severity": "medium",
+          "weight": 15,
+          "source": "qr_decoder",
+          "evidence_data": {
+            "raw_qr_payload": "https://pmec-exam-support.com/student-portal/auth-verify",
+            "extracted_destination": "https://pmec-exam-support.com/student-portal/auth-verify",
+            "normalized_domain": "pmec-exam-support.com"
+          },
+          "mitre": [
+            "T1204.001",
+            "T1566.002"
+          ]
+        },
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"pmec-exam-support.com\" closely mimics protected institutional domain \"pmec.ac.in\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "pmec-exam-support.com",
+            "official_domain": "pmec.ac.in",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/student-portal/auth-verify\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/student-portal/auth-verify"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "block_url",
+        "sinkhole_domain"
+      ],
+      "mitre": [
+        "T1204.001",
+        "T1566.002",
+        "T1586"
+      ],
+      "raw_input_summary": "Scanned Physical QR Poster leading to deceptive domain https://pmec-exam-support.com/student-portal/auth-verify",
+      "incident_id": "CG-0001"
+    },
+    {
+      "event_id": "EVT-CAM-01",
+      "timestamp": "2026-10-08T15:45:26.492Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.73,
+      "risk_score": 18,
+      "severity": "SAFE",
+      "entities": {
+        "user_id": "student042",
+        "target_email": "student042@pmec.ac.in",
+        "sender": "scholarship-verification-desk@odisha-scholarships-gov.xyz"
+      },
+      "indicators": [
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        }
+      ],
+      "recommended_actions": [
+        "quarantine_message",
+        "warn_user"
+      ],
+      "mitre": [
+        "T1566"
+      ],
+      "raw_input_summary": "URGENT SCHOLARSHIP NOTICE: Your state pre-matric scholarship disbursement has encountered a verification freeze. Action required within 24 hours to avoid cancellation of Rs 45,000 allowance."
+    },
+    {
+      "event_id": "EVT-SAFE-MUWY0B55",
+      "timestamp": "2026-10-06T17:18:39.209Z",
+      "source": "message_analyzer",
+      "classification": "legitimate",
+      "confidence": 0.99,
+      "risk_score": 8,
+      "severity": "SAFE",
+      "entities": {
+        "sender": "registrar@pmec.ac.in",
+        "sender_domain": "pmec.ac.in",
+        "claimed_identity": "Dr. S. K. Nayak",
+        "claimed_role": "Registrar",
+        "url": "https://pmec.ac.in/examinations",
+        "domain": "pmec.ac.in"
+      },
+      "indicators": [
+        {
+          "id": "VERIFIED_INSTITUTIONAL_SENDER",
+          "name": "VERIFIED_INSTITUTIONAL_SENDER",
+          "description": "Communication dispatched from verified PMEC institutional domain (pmec.ac.in) via approved academic distribution list.",
+          "severity": "low",
+          "weight": 0,
+          "source": "identity_guard",
+          "evidence_data": {
+            "domain": "pmec.ac.in",
+            "status": "OFFICIAL"
+          }
+        }
+      ],
+      "recommended_actions": [
+        "allow_traffic"
+      ],
+      "mitre": [],
+      "raw_input_summary": "PMEC Berhampur Official Academic Notice: The Controller of Examinations has published the revised spring end-term schedule on the official college notice board and portal https://pmec.ac.in/examinations. Students are advised to download the signed schedule. Classes will proceed as per timetable."
+    }
+  ],
+  "incidents": [
+    {
+      "id": "CG-0002",
+      "title": "IMPOSSIBLE TRAVEL targeting s1",
+      "status": "NEW",
+      "severity": "MEDIUM",
+      "risk_score": 59,
+      "created_at": "2026-10-08T16:49:12.385Z",
+      "updated_at": "2026-10-08T18:58:08.492Z",
+      "target_user": "s1",
+      "summary": "Correlated 1 security events across Human and Technical layers. Attack chain spans Abnormal Authentication Drift. Current institutional risk is MEDIUM (59/100).",
+      "event_ids": [
+        "EVT-MUZRU56P-132"
+      ],
+      "attack_stages": [
+        "Abnormal Authentication Drift"
+      ],
+      "indicators": [
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"s1\" authenticated from unrecognized client device \"hydra\" (Baseline: \"Desktop Browser\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "s1",
+            "observed_device": "hydra",
+            "baseline_device": "Desktop Browser"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "name": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "description": "Impossible geographic relocation for s1: DE to IN (5629 km in 0.1 hrs = 67548 km/h)",
+          "severity": "critical",
+          "weight": 34,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "s1",
+            "origin": "DE",
+            "destination": "IN",
+            "distance_km": 5629,
+            "elapsed_hours": 0.08333333333333333,
+            "implied_speed_kmh": 67548
+          },
+          "mitre": [
+            "T1078"
+          ]
+        }
+      ],
+      "mitre": [
+        "T1078.003",
+        "T1078"
+      ],
+      "graph_nodes": [
+        {
+          "id": "inc-CG-0002",
+          "label": "Incident CG-0002",
+          "type": "Incident",
+          "risk": "MEDIUM",
+          "category": "Incident",
+          "mitre_code": "T1566",
+          "mitre_tactic": "Phishing / Multi-Stage Campaign",
+          "risk_score": 64,
+          "status": "ACTIVE",
+          "metadata": {
+            "incident_id": "CG-0002",
+            "event_count": 1
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRU56P-132",
+          "label": "impossible travel (#EVT-MUZRU56P-132)",
+          "type": "Message",
+          "risk": "HIGH",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 63,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRU56P-132",
+            "source": "auth_guard",
+            "timestamp": "2026-10-08T16:49:12.385Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "Analyzed batch of 2 authentication attempts"
+          },
+          "blast_radius": 4
+        },
+        {
+          "id": "user-s1",
+          "label": "User: s1",
+          "type": "User",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1087.002",
+          "mitre_tactic": "Discovery (Compromised User Identity)",
+          "risk_score": 78,
+          "status": "ACTIVE",
+          "metadata": {
+            "user_id": "s1"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "ip-2.2.2.2",
+          "label": "IP: 2.2.2.2",
+          "type": "IP",
+          "risk": "HIGH",
+          "category": "Infra",
+          "mitre_code": "T1078.004",
+          "mitre_tactic": "Defense Evasion (Impossible Travel / Tor C2)",
+          "risk_score": 75,
+          "status": "ACTIVE",
+          "metadata": {
+            "ip_address": "2.2.2.2"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "device-mac",
+          "label": "Device: mac",
+          "type": "Device",
+          "risk": "HIGH",
+          "category": "Infra",
+          "mitre_code": "T1082",
+          "mitre_tactic": "System Info (Adversary User-Agent)",
+          "risk_score": 70,
+          "status": "ACTIVE",
+          "metadata": {
+            "device_fingerprint": "mac"
+          },
+          "blast_radius": 1
+        }
+      ],
+      "graph_edges": [
+        {
+          "id": "edge-inc-EVT-MUZRU56P-132",
+          "source": "evt-EVT-MUZRU56P-132",
+          "target": "inc-CG-0002",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRU56P-132",
+          "source": "evt-EVT-MUZRU56P-132",
+          "target": "user-s1",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-login-EVT-MUZRU56P-132",
+          "source": "evt-EVT-MUZRU56P-132",
+          "target": "ip-2.2.2.2",
+          "relationship": "logged_in_from",
+          "label": "connection origin",
+          "category": "infra",
+          "weight": 0.88
+        },
+        {
+          "id": "edge-device-EVT-MUZRU56P-132",
+          "source": "evt-EVT-MUZRU56P-132",
+          "target": "device-mac",
+          "relationship": "uses_device",
+          "label": "client fingerprint",
+          "category": "infra",
+          "weight": 0.75
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action_id": "LOG_TELEMETRY",
+          "title": "Retain Observability Telemetry",
+          "description": "Log anomalous pattern for continuous institutional baselining",
+          "criticality": "STANDARD",
+          "status": "RECOMMENDED"
+        }
+      ],
+      "audit_history": []
+    },
+    {
+      "id": "CG-0001",
+      "title": "Coordinated Digital Trust Attack targeting student042",
+      "status": "NEW",
+      "severity": "CRITICAL",
+      "risk_score": 100,
+      "created_at": "2026-10-06T17:12:57.503Z",
+      "updated_at": "2026-10-08T18:58:08.490Z",
+      "target_user": "student042",
+      "target_identity": "Dr. S. K. Nayak",
+      "summary": "Correlated 26 security events across Human and Technical layers. Attack chain spans Initial Phishing Vector → Look-Alike Institutional Domain Deployment → Synthetic Deepfake Voice/Video Impersonation → Executive Role Impersonation → Credential & OTP Solicitation → Distributed Password Spraying → Abnormal Authentication Drift → Account Takeover & Session Compromise. Current institutional risk is CRITICAL (100/100).",
+      "event_ids": [
+        "EVT-DOM-WFYE-03",
+        "EVT-DOM-WFYE-02",
+        "EVT-MUZWBKW4-610",
+        "EVT-MUZW52RX-780",
+        "EVT-MUZSM7HL-295",
+        "EVT-MUZSJVCS-152",
+        "EVT-MUZSJI5W-428",
+        "EVT-MUZRYS59-787",
+        "EVT-MUZRU577-612",
+        "EVT-MUZRU56X-151",
+        "EVT-MUZRU56E-618",
+        "EVT-MUZRU563-136",
+        "EVT-MUWZ3LLZ-825",
+        "EVT-MUWZ3LLF-975",
+        "EVT-MUWZ2ZW8-997",
+        "EVT-MUWZ2WB2-378",
+        "EVT-MUWY8K5Z-964",
+        "EVT-MUWY7UR3-159",
+        "EVT-MUWY7PZN-681",
+        "EVT-MUWY7K48-950",
+        "EVT-MUWY6Q80-211",
+        "EVT-MUWY4T6W-692",
+        "EVT-CAM-05",
+        "EVT-CAM-04",
+        "EVT-CAM-03",
+        "EVT-CAM-02"
+      ],
+      "attack_stages": [
+        "Initial Phishing Vector",
+        "Look-Alike Institutional Domain Deployment",
+        "Synthetic Deepfake Voice/Video Impersonation",
+        "Executive Role Impersonation",
+        "Credential & OTP Solicitation",
+        "Distributed Password Spraying",
+        "Abnormal Authentication Drift",
+        "Account Takeover & Session Compromise"
+      ],
+      "indicators": [
+        {
+          "id": "PROTECTED_IDENTITY_TARGET",
+          "name": "PROTECTED_IDENTITY_TARGET",
+          "description": "Communication references protected institutional authority \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 18,
+          "source": "identity_guard",
+          "evidence_data": {
+            "identity_id": "ID-001",
+            "role": "Registrar",
+            "department": "Administration",
+            "sensitivity": "EXECUTIVE"
+          }
+        },
+        {
+          "id": "IDENTITY_DOMAIN_MISMATCH",
+          "name": "IDENTITY_DOMAIN_MISMATCH",
+          "description": "Sender domain \"gmail.com\" does NOT match official domain \"pmec.ac.in\" registered for Registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "identity_guard",
+          "evidence_data": {
+            "claimed_role": "Registrar",
+            "sender_domain": "gmail.com",
+            "approved_domain": "pmec.ac.in",
+            "is_free_mail": true
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "name": "UNAPPROVED_COMMUNICATION_CHANNEL",
+          "description": "Channel \"email\" is not on the authorized broadcast whitelist for Registrar",
+          "severity": "high",
+          "weight": 24,
+          "source": "identity_guard",
+          "evidence_data": {
+            "channel": "email",
+            "approved_channels": [
+              "institutional_email",
+              "official_portal"
+            ]
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "PROTECTED_PERSONA_REFERENCED",
+          "name": "PROTECTED_PERSONA_REFERENCED",
+          "description": "Message explicitly references official university persona \"Dr. S. K. Nayak\" (Registrar, Administration)",
+          "severity": "high",
+          "weight": 14,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "persona_id": "ID-001",
+            "name": "Dr. S. K. Nayak",
+            "role": "Registrar"
+          }
+        },
+        {
+          "id": "URGENCY_TRIGGER",
+          "name": "URGENCY_TRIGGER",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "medium",
+          "weight": 16,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "URGENCY_TRIGGER"
+          },
+          "mitre": [
+            "T1566"
+          ]
+        },
+        {
+          "id": "DOMAIN_LOOKALIKE",
+          "name": "DOMAIN_LOOKALIKE",
+          "description": "Observed domain \"pmec-portal-auth-verification.xyz\" closely mimics protected institutional domain \"pmec.ac.in\" (0.92% similarity via brand_token_insertion_subdomain_hijack)",
+          "severity": "critical",
+          "weight": 65,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "observed_domain": "pmec-portal-auth-verification.xyz",
+            "official_domain": "pmec.ac.in",
+            "similarity": 0.92,
+            "method": "brand_token_insertion_subdomain_hijack"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "HIGH_RISK_TLD",
+          "name": "HIGH_RISK_TLD",
+          "description": "Domain uses top-level domain .xyz frequently associated with low-cost throwaway phishing assets",
+          "severity": "medium",
+          "weight": 16,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "tld": "xyz"
+          },
+          "mitre": [
+            "T1586"
+          ]
+        },
+        {
+          "id": "DECEPTIVE_AUTH_PATH",
+          "name": "DECEPTIVE_AUTH_PATH",
+          "description": "URL path targets authentication endpoint \"/login/verify.php\" on an unapproved external domain",
+          "severity": "high",
+          "weight": 20,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "path": "/login/verify.php"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1056"
+          ]
+        },
+        {
+          "id": "LIVE_PROBE_UNREACHABLE_HOST",
+          "name": "LIVE_PROBE_UNREACHABLE_HOST",
+          "description": "Live DNS/HTTP probe failed: fetch failed. Characteristic of burned or transient phishing infrastructure",
+          "severity": "medium",
+          "weight": 15,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "error": "fetch failed"
+          },
+          "mitre": [
+            "T1566.002"
+          ]
+        },
+        {
+          "id": "HOMOGLYPH_BRAND_HIJACK",
+          "name": "Brand Token Hijacking",
+          "description": "Institutional brand \"pmec\" combined with exam/support lure on external registrar",
+          "severity": "critical",
+          "weight": 35,
+          "source": "url_analyzer",
+          "evidence_data": {
+            "domain": "https://pmec-exam-support.com/student/auth-login"
+          }
+        },
+        {
+          "id": "COERCION_URGENCY_TRIGGER",
+          "name": "Coercive Urgency Pattern",
+          "description": "High-urgency artificial time constraint designed to bypass critical scrutiny",
+          "severity": "high",
+          "weight": 25,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "excerpt": "URGENT: This is State Bank of India fraud desk. Your account"
+          }
+        },
+        {
+          "id": "AUDIO_PITCH_UNNATURAL_FLATNESS",
+          "name": "Vocal Tract Micro-Tremor Absence",
+          "description": "Fundamental frequency jitter (F0) is 0.22%, below human biological vocal threshold (0.6% - 2.0%). Indicates parametric or diffusion speech synthesis.",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "pitch_jitter": 0.22,
+            "expected_range": "0.6% - 2.0%"
+          },
+          "mitre": [
+            "T1566.004",
+            "T1656"
+          ]
+        },
+        {
+          "id": "AUDIO_PHASE_SPECTRAL_DISCONTINUITY",
+          "name": "Neural Vocoder Phase Boundary Artifacts",
+          "description": "Spectral Rolloff anomaly detected across 4kHz-8kHz frequency band with abrupt mathematically zero-noise pauses between phonemes.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_audio",
+          "evidence_data": {
+            "vocoder_anomaly": 92.4,
+            "detected_arch": "Neural Diffusion Vocoder (Diffusion-TTS / Zero-Shot Voice Clone)"
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "UNAUTHORIZED_LOGIN_HOST",
+          "name": "UNAUTHORIZED_LOGIN_HOST",
+          "description": "Domain \"pmec-login.fake.org\" is not an authorized institutional domain for \"PMEC / BPUT Academic Portal\"",
+          "severity": "critical",
+          "weight": 35,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "domain": "pmec-login.fake.org",
+            "claimedBrand": "PMEC / BPUT Academic Portal"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1586"
+          ]
+        },
+        {
+          "id": "CREDENTIAL_FORM_EXPOSURE",
+          "name": "CREDENTIAL_FORM_EXPOSURE",
+          "description": "Active authentication submission form rendered on non-institutional origin",
+          "severity": "high",
+          "weight": 25,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "hasLoginForm": true,
+            "credentialsSolicited": [
+              "Password",
+              "One-Time Password (OTP)"
+            ]
+          },
+          "mitre": [
+            "T1056.001"
+          ]
+        },
+        {
+          "id": "MFA_BYPASS_HARVESTING",
+          "name": "MFA_BYPASS_HARVESTING",
+          "description": "Secondary MFA / OTP input token field detected on deceptive landing interface",
+          "severity": "critical",
+          "weight": 30,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "hasOtpField": true
+          },
+          "mitre": [
+            "T1539",
+            "T1110"
+          ]
+        },
+        {
+          "id": "CROSS_DOMAIN_CREDENTIAL_EXFIL",
+          "name": "CROSS_DOMAIN_CREDENTIAL_EXFIL",
+          "description": "Form action points to external exfiltration endpoint: http://stealer.ru/post",
+          "severity": "critical",
+          "weight": 30,
+          "source": "fake_login_detector",
+          "evidence_data": {
+            "form_action_target": "http://stealer.ru/post"
+          },
+          "mitre": [
+            "T1041"
+          ]
+        },
+        {
+          "id": "UNVERIFIED_EXTERNAL_SENDER",
+          "name": "UNVERIFIED_EXTERNAL_SENDER",
+          "description": "Sender \"principal@gmail.com\" originates outside the institutional trust perimeter",
+          "severity": "low",
+          "weight": 8,
+          "source": "identity_guard",
+          "evidence_data": {
+            "sender_address": "principal@gmail.com"
+          }
+        },
+        {
+          "id": "QR_OBFUSCATED_VECTOR",
+          "name": "QR_OBFUSCATED_VECTOR",
+          "description": "Physical or digital QR vector bypasses standard text-based mail filters and hides destination URL from preview",
+          "severity": "medium",
+          "weight": 15,
+          "source": "qr_decoder",
+          "evidence_data": {
+            "raw_qr_payload": "https://bput-exam-desk.xyz/verify",
+            "extracted_destination": "https://bput-exam-desk.xyz/verify",
+            "normalized_domain": "bput-exam-desk.xyz"
+          },
+          "mitre": [
+            "T1204.001",
+            "T1566.002"
+          ]
+        },
+        {
+          "id": "VIDEO_RPPG_LIVENESS_PULSE_ABSENT",
+          "name": "Absence of Biological Blood Volume Pulse (rPPG)",
+          "description": "Microscopic spectral analysis of facial capillary pixel oscillation failed to detect physiological cardiac pulse signature (rPPG confidence 8.4%).",
+          "severity": "critical",
+          "weight": 35,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "rppg_confidence": 8.4,
+            "detected_pulse_bpm": 0
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_FACIAL_BOUNDARY_WARPING",
+          "name": "Facial Boundary Latent Warping Artifacts",
+          "description": "High-frequency gradient discontinuity detected along jawline and hairline perimeter consistent with Poisson blending and masked face-swapping.",
+          "severity": "high",
+          "weight": 28,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "boundary_warp_score": 91.2,
+            "gan_frequency_checkerboard": 88
+          },
+          "mitre": [
+            "T1656"
+          ]
+        },
+        {
+          "id": "VIDEO_LIP_SYNC_DESYNCHRONIZATION",
+          "name": "Phoneme-Viseme Acoustic Desynchronization",
+          "description": "Calculated temporal latency of 180ms between bilabial plosive audio consonants (/p/, /b/, /m/) and visual mouth closure keyframes.",
+          "severity": "high",
+          "weight": 25,
+          "source": "deepfake_video",
+          "evidence_data": {
+            "lip_sync_congruence": 24.5,
+            "method": "High-Resolution Latent Face-Swap (Diffusion Inpainting / SimSwap)"
+          },
+          "mitre": [
+            "T1656",
+            "T1566.004"
+          ]
+        },
+        {
+          "id": "NEW_DEVICE_AUTHENTICATION",
+          "name": "NEW_DEVICE_AUTHENTICATION",
+          "description": "User \"student042\" authenticated from unrecognized client device \"Firefox on Linux (Kali)\" (Baseline: \"Chrome on macOS (MacBook Pro)\")",
+          "severity": "medium",
+          "weight": 16,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "observed_device": "Firefox on Linux (Kali)",
+            "baseline_device": "Chrome on macOS (MacBook Pro)"
+          },
+          "mitre": [
+            "T1078.003"
+          ]
+        },
+        {
+          "id": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "name": "IMPOSSIBLE_TRAVEL_ANOMALY",
+          "description": "Impossible geographic relocation for student042: Berhampur, Odisha, IN to Bucharest, Romania (6052 km in 0.6 hrs = 10087 km/h)",
+          "severity": "critical",
+          "weight": 34,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "origin": "Berhampur, Odisha, IN",
+            "destination": "Bucharest, Romania",
+            "distance_km": 6052,
+            "elapsed_hours": 0.6,
+            "implied_speed_kmh": 10087
+          },
+          "mitre": [
+            "T1078"
+          ]
+        },
+        {
+          "id": "ACCOUNT_TAKEOVER_BEHAVIOR",
+          "name": "ACCOUNT_TAKEOVER_BEHAVIOR",
+          "description": "Brute force progression: 3 consecutive authentication failures followed by immediate valid session compromise from Bucharest, Romania",
+          "severity": "critical",
+          "weight": 38,
+          "source": "auth_guard",
+          "evidence_data": {
+            "user_id": "student042",
+            "failures": 3,
+            "compromise_ip": "194.26.29.112",
+            "compromise_location": "Bucharest, Romania"
+          },
+          "mitre": [
+            "T1110",
+            "T1078"
+          ]
+        },
+        {
+          "id": "PASSWORD_SPRAYING_ATTACK",
+          "name": "PASSWORD_SPRAYING_ATTACK",
+          "description": "Source IP 185.220.101.4 targeted 4 distinct institutional accounts (student041, student042, student043, student044) with 4 credential attempts",
+          "severity": "critical",
+          "weight": 32,
+          "source": "auth_guard",
+          "evidence_data": {
+            "ip": "185.220.101.4",
+            "distinct_accounts_count": 4,
+            "targeted_accounts": [
+              "student041",
+              "student042",
+              "student043",
+              "student044"
+            ],
+            "failure_count": 4
+          },
+          "mitre": [
+            "T1110.003"
+          ]
+        },
+        {
+          "id": "OTP_SOLICITATION",
+          "name": "OTP_SOLICITATION",
+          "description": "Direct solicitation of One-Time Password / Multi-Factor Authentication token (Targeting Institutional Identity)",
+          "severity": "critical",
+          "weight": 46,
+          "source": "message_analyzer",
+          "evidence_data": {
+            "matched_rule": "OTP_SOLICITATION"
+          },
+          "mitre": [
+            "T1566.002",
+            "T1539"
+          ]
+        }
+      ],
+      "mitre": [
+        "T1566.002",
+        "T1586",
+        "T1566",
+        "T1056",
+        "T1566.004",
+        "T1656",
+        "T1056.001",
+        "T1539",
+        "T1110",
+        "T1041",
+        "T1204.001",
+        "T1078",
+        "T1110.003"
+      ],
+      "graph_nodes": [
+        {
+          "id": "inc-CG-0001",
+          "label": "Incident CG-0001",
+          "type": "Incident",
+          "risk": "CRITICAL",
+          "category": "Incident",
+          "mitre_code": "T1566",
+          "mitre_tactic": "Phishing / Multi-Stage Campaign",
+          "risk_score": 96,
+          "status": "ACTIVE",
+          "metadata": {
+            "incident_id": "CG-0001",
+            "event_count": 26
+          },
+          "blast_radius": 26
+        },
+        {
+          "id": "evt-EVT-DOM-WFYE-03",
+          "label": "executive impersonation (#EVT-DOM-WFYE-03)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 93,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-DOM-WFYE-03",
+            "source": "identity_guard",
+            "timestamp": "2026-10-08T17:58:08.480Z",
+            "indicators_count": 5,
+            "raw_text_snippet": "Spoofed email from drsknayak-pmec@gmail.com impersonating Dr. S. K. Nayak (Registrar)"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "user-student042",
+          "label": "User: student042",
+          "type": "User",
+          "risk": "CRITICAL",
+          "category": "Human",
+          "mitre_code": "T1087.002",
+          "mitre_tactic": "Discovery (Compromised User Identity)",
+          "risk_score": 92,
+          "status": "ACTIVE",
+          "metadata": {
+            "user_id": "student042"
+          },
+          "blast_radius": 26
+        },
+        {
+          "id": "sender-drsknayak-pmec@gmail.com",
+          "label": "Sender: drsknayak-pmec@gmail.com",
+          "type": "Sender",
+          "risk": "CRITICAL",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "drsknayak-pmec@gmail.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Dr._S._K._Nayak",
+          "label": "Role: Dr. S. K. Nayak",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Dr. S. K. Nayak"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "evt-EVT-DOM-WFYE-02",
+          "label": "lookalike domain (#EVT-DOM-WFYE-02)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-DOM-WFYE-02",
+            "source": "url_analyzer",
+            "timestamp": "2026-10-08T17:28:08.477Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "Adversary Lookalike URL deployed mimicking pmec.ac.in: https://pmec-portal-auth-verification.xyz/login/verify.php"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-https://pmec-portal-auth-verif",
+          "label": "URL: https://pmec-portal-auth-...",
+          "type": "URL",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 94,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://pmec-portal-auth-verification.xyz/login/verify.php"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "domain-pmec-portal-auth-verification.xyz",
+          "label": "Domain: pmec-portal-auth-verification.xyz",
+          "type": "Domain",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "pmec-portal-auth-verification.xyz"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZWBKW4-610",
+          "label": "executive impersonation (#EVT-MUZWBKW4-610)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 93,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZWBKW4-610",
+            "source": "identity_guard",
+            "timestamp": "2026-10-08T18:54:44.356Z",
+            "indicators_count": 5,
+            "raw_text_snippet": "Claimed: Dr. S. K. Nayak via email from drsknayak-urgent-desk@gmail.com"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "sender-drsknayak-urgent-desk@gmail.com",
+          "label": "Sender: drsknayak-urgent-desk@gmail.com",
+          "type": "Sender",
+          "risk": "CRITICAL",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "drsknayak-urgent-desk@gmail.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUZW52RX-780",
+          "label": "lookalike domain (#EVT-MUZW52RX-780)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZW52RX-780",
+            "source": "url_analyzer",
+            "timestamp": "2026-10-08T18:49:40.941Z",
+            "indicators_count": 4,
+            "raw_text_snippet": "Observed URL: https://stanford-portal-auth.xyz/login"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-https://stanford-portal-auth.x",
+          "label": "URL: https://stanford-portal-a...",
+          "type": "URL",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 94,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://stanford-portal-auth.xyz/login"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "domain-stanford-portal-auth.xyz",
+          "label": "Domain: stanford-portal-auth.xyz",
+          "type": "Domain",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "stanford-portal-auth.xyz"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZSM7HL-295",
+          "label": "lookalike domain (#EVT-MUZSM7HL-295)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZSM7HL-295",
+            "source": "url_analyzer",
+            "timestamp": "2026-10-08T17:11:01.737Z",
+            "indicators_count": 4,
+            "raw_text_snippet": "Observed URL: https://pmec-exam-support.com/student/auth-login"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-https://pmec-exam-support.com/",
+          "label": "URL: https://pmec-exam-support...",
+          "type": "URL",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 94,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://pmec-exam-support.com/student/auth-login"
+          },
+          "blast_radius": 6
+        },
+        {
+          "id": "domain-pmec-exam-support.com",
+          "label": "Domain: pmec-exam-support.com",
+          "type": "Domain",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "pmec-exam-support.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUZSJVCS-152",
+          "label": "credential phishing (#EVT-MUZSJVCS-152)",
+          "type": "Message",
+          "risk": "HIGH",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 72,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZSJVCS-152",
+            "source": "message_analyzer",
+            "timestamp": "2026-10-08T17:09:12.700Z",
+            "indicators_count": 1,
+            "raw_text_snippet": "URGENT: This is State Bank of India fraud desk. Your account is locked due to suspicious UPI debit of Rs 98,500. Click h..."
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "sender-+91-9876543210",
+          "label": "Sender: +91-9876543210",
+          "type": "Sender",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "+91-9876543210"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZSJI5W-428",
+          "label": "legitimate (#EVT-MUZSJI5W-428)",
+          "type": "Message",
+          "risk": "LOW",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 28,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZSJI5W-428",
+            "source": "url_analyzer",
+            "timestamp": "2026-10-08T17:08:55.604Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "Observed URL: http://non-existent-phish-999.xyz"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-http://non-existent-phish-999.",
+          "label": "URL: http://non-existent-phish...",
+          "type": "URL",
+          "risk": "LOW",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 80,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "http://non-existent-phish-999.xyz"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "domain-non-existent-phish-999.xyz",
+          "label": "Domain: non-existent-phish-999.xyz",
+          "type": "Domain",
+          "risk": "LOW",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "non-existent-phish-999.xyz"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRYS59-787",
+          "label": "deepfake audio (#EVT-MUZRYS59-787)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 89,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRYS59-787",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-08T16:52:48.765Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: Wire Transfer Authorization (Voice Clone) [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Prof._Chittaranjan_Tripathy_(Vice_Chancellor)",
+          "label": "Role: Prof. Chittaranjan Tripathy (Vice Chancellor)",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Prof. Chittaranjan Tripathy (Vice Chancellor)"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRU577-612",
+          "label": "deepfake audio (#EVT-MUZRU577-612)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 87,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRU577-612",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-08T16:49:12.403Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: VC Voice Clone [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Prof._Tripathy",
+          "label": "Role: Prof. Tripathy",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Prof. Tripathy"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRU56X-151",
+          "label": "credential harvesting (#EVT-MUZRU56X-151)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRU56X-151",
+            "source": "fake_login_detector",
+            "timestamp": "2026-10-08T16:49:12.393Z",
+            "indicators_count": 4,
+            "raw_text_snippet": "Deceptive Login Portal check: https://pmec-login.fake.org"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-https://pmec-login.fake.org",
+          "label": "URL: https://pmec-login.fake.o...",
+          "type": "URL",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 94,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://pmec-login.fake.org"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRU56E-618",
+          "label": "social engineering (#EVT-MUZRU56E-618)",
+          "type": "Message",
+          "risk": "LOW",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 25,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRU56E-618",
+            "source": "identity_guard",
+            "timestamp": "2026-10-08T16:49:12.374Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "Claimed: Principal PMEC via whatsapp from principal@gmail.com"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "sender-principal@gmail.com",
+          "label": "Sender: principal@gmail.com",
+          "type": "Sender",
+          "risk": "LOW",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "principal@gmail.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Principal_PMEC",
+          "label": "Role: Principal PMEC",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Principal PMEC"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUZRU563-136",
+          "label": "qr phishing (#EVT-MUZRU563-136)",
+          "type": "QR",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.003",
+          "mitre_tactic": "Initial Access (Quishing Physical Vector)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUZRU563-136",
+            "source": "qr_decoder",
+            "timestamp": "2026-10-08T16:49:12.363Z",
+            "indicators_count": 4,
+            "raw_text_snippet": "Decoded QR code directing to: https://bput-exam-desk.xyz/verify"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "url-https://bput-exam-desk.xyz/ver",
+          "label": "URL: https://bput-exam-desk.xy...",
+          "type": "URL",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 94,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://bput-exam-desk.xyz/verify"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "domain-bput-exam-desk.xyz",
+          "label": "Domain: bput-exam-desk.xyz",
+          "type": "Domain",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "bput-exam-desk.xyz"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUWZ3LLZ-825",
+          "label": "credential harvesting (#EVT-MUWZ3LLZ-825)",
+          "type": "Message",
+          "risk": "HIGH",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 63,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWZ3LLZ-825",
+            "source": "fake_login_detector",
+            "timestamp": "2026-10-06T17:49:12.359Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "Deceptive Login Portal check: https://pmec-login-help.net"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "ident-PMEC_Portal",
+          "label": "Role: PMEC Portal",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "PMEC Portal"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "url-https://pmec-login-help.net",
+          "label": "URL: https://pmec-login-help.n...",
+          "type": "URL",
+          "risk": "HIGH",
+          "category": "Infra",
+          "mitre_code": "T1204.001",
+          "mitre_tactic": "User Execution (Malicious Link)",
+          "risk_score": 80,
+          "status": "ACTIVE",
+          "metadata": {
+            "full_url": "https://pmec-login-help.net"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUWZ3LLF-975",
+          "label": "executive impersonation (#EVT-MUWZ3LLF-975)",
+          "type": "Message",
+          "risk": "HIGH",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 79,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWZ3LLF-975",
+            "source": "identity_guard",
+            "timestamp": "2026-10-06T17:49:12.339Z",
+            "indicators_count": 4,
+            "raw_text_snippet": "Claimed: Vice Chancellor via whatsapp from vc.pmec.official@gmail.com"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "sender-vc.pmec.official@gmail.com",
+          "label": "Sender: vc.pmec.official@gmail.com",
+          "type": "Sender",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "vc.pmec.official@gmail.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Vice_Chancellor",
+          "label": "Role: Vice Chancellor",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Vice Chancellor"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUWZ2ZW8-997",
+          "label": "deepfake video (#EVT-MUWZ2ZW8-997)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWZ2ZW8-997",
+            "source": "deepfake_video",
+            "timestamp": "2026-10-06T17:48:44.216Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "VIDEO Deepfake Forensics: Face Swap Exam Video [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "ident-Prof._Chittaranjan_Tripathy",
+          "label": "Role: Prof. Chittaranjan Tripathy",
+          "type": "Identity",
+          "risk": "HIGH",
+          "category": "Human",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Impersonation (Spoofed Authority)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "authority_role": "Prof. Chittaranjan Tripathy"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-MUWZ2WB2-378",
+          "label": "deepfake audio (#EVT-MUWZ2WB2-378)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 83,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWZ2WB2-378",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-06T17:48:39.566Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: AI Voice Clone VC [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY8K5Z-964",
+          "label": "deepfake audio (#EVT-MUWY8K5Z-964)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 92,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY8K5Z-964",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-06T17:25:04.151Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY7UR3-159",
+          "label": "deepfake audio (#EVT-MUWY7UR3-159)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY7UR3-159",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-06T17:24:31.215Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY7PZN-681",
+          "label": "deepfake video (#EVT-MUWY7PZN-681)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY7PZN-681",
+            "source": "deepfake_video",
+            "timestamp": "2026-10-06T17:24:25.043Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "VIDEO Deepfake Forensics: Video Deepfake: Spoofed Exam Postponement Press Video [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY7K48-950",
+          "label": "deepfake video (#EVT-MUWY7K48-950)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 93,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY7K48-950",
+            "source": "deepfake_video",
+            "timestamp": "2026-10-06T17:24:17.432Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "VIDEO Deepfake Forensics: Uploaded Sample: gemini_generated_video_c5e39b5f.mp4 [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY6Q80-211",
+          "label": "deepfake audio (#EVT-MUWY6Q80-211)",
+          "type": "Audio",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1656",
+          "mitre_tactic": "Defense Evasion / Social Eng (Synthetic Voice)",
+          "risk_score": 92,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY6Q80-211",
+            "source": "deepfake_audio",
+            "timestamp": "2026-10-06T17:23:38.688Z",
+            "indicators_count": 2,
+            "raw_text_snippet": "AUDIO Deepfake Forensics: AI Voice Clone: Fake Principal Wire Transfer Request [MANIPULATED_DEEPFAKE]"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-MUWY4T6W-692",
+          "label": "lookalike domain (#EVT-MUWY4T6W-692)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 85,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-MUWY4T6W-692",
+            "source": "url_analyzer",
+            "timestamp": "2026-10-06T17:22:09.224Z",
+            "indicators_count": 1,
+            "raw_text_snippet": "Observed URL: https://pmec-exam-support.com/student/auth-login"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "domain-unknown",
+          "label": "Domain: unknown",
+          "type": "Domain",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1583.001",
+          "mitre_tactic": "Resource Dev (Lookalike Domain Typosquat)",
+          "risk_score": 90,
+          "status": "ACTIVE",
+          "metadata": {
+            "domain": "unknown"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-CAM-05",
+          "label": "account takeover risk (#EVT-CAM-05)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 84,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-CAM-05",
+            "source": "auth_guard",
+            "timestamp": "2026-10-08T18:39:26.498Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "Impossible travel anomaly (Berhampur -> Bucharest in 36m, 9200km/h) followed by valid session takeover"
+          },
+          "blast_radius": 4
+        },
+        {
+          "id": "ip-194.26.29.112",
+          "label": "IP: 194.26.29.112",
+          "type": "IP",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1078.004",
+          "mitre_tactic": "Defense Evasion (Impossible Travel / Tor C2)",
+          "risk_score": 95,
+          "status": "ACTIVE",
+          "metadata": {
+            "ip_address": "194.26.29.112"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "device-Firefox on Linux (Ka",
+          "label": "Device: Firefox on Linux (Ka...",
+          "type": "Device",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1082",
+          "mitre_tactic": "System Info (Adversary User-Agent)",
+          "risk_score": 70,
+          "status": "ACTIVE",
+          "metadata": {
+            "device_fingerprint": "Firefox on Linux (Kali)"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-CAM-04",
+          "label": "password spraying (#EVT-CAM-04)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 91,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-CAM-04",
+            "source": "auth_guard",
+            "timestamp": "2026-10-08T17:15:26.497Z",
+            "indicators_count": 5,
+            "raw_text_snippet": "Distributed password spraying targeting multiple student accounts from 185.220.101.4"
+          },
+          "blast_radius": 4
+        },
+        {
+          "id": "ip-185.220.101.4",
+          "label": "IP: 185.220.101.4",
+          "type": "IP",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1078.004",
+          "mitre_tactic": "Defense Evasion (Impossible Travel / Tor C2)",
+          "risk_score": 95,
+          "status": "ACTIVE",
+          "metadata": {
+            "ip_address": "185.220.101.4"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "device-Hydra/9.2",
+          "label": "Device: Hydra/9.2",
+          "type": "Device",
+          "risk": "CRITICAL",
+          "category": "Infra",
+          "mitre_code": "T1082",
+          "mitre_tactic": "System Info (Adversary User-Agent)",
+          "risk_score": 70,
+          "status": "ACTIVE",
+          "metadata": {
+            "device_fingerprint": "Hydra/9.2"
+          },
+          "blast_radius": 1
+        },
+        {
+          "id": "evt-EVT-CAM-03",
+          "label": "executive impersonation (#EVT-CAM-03)",
+          "type": "Message",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.002",
+          "mitre_tactic": "Initial Access (Spearphishing Link)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-CAM-03",
+            "source": "identity_guard",
+            "timestamp": "2026-10-08T16:45:26.496Z",
+            "indicators_count": 5,
+            "raw_text_snippet": "Executive Identity Spoofing (Registrar) over unapproved WhatsApp channel demanding OTP"
+          },
+          "blast_radius": 3
+        },
+        {
+          "id": "sender-registrar-pmec-support@gmail.com",
+          "label": "Sender: registrar-pmec-support@gmail.com",
+          "type": "Sender",
+          "risk": "CRITICAL",
+          "category": "Human",
+          "mitre_code": "T1586.002",
+          "mitre_tactic": "Resource Dev (Compromised / Malicious Sender)",
+          "risk_score": 88,
+          "status": "ACTIVE",
+          "metadata": {
+            "sender_handle": "registrar-pmec-support@gmail.com"
+          },
+          "blast_radius": 2
+        },
+        {
+          "id": "evt-EVT-CAM-02",
+          "label": "qr phishing (#EVT-CAM-02)",
+          "type": "QR",
+          "risk": "CRITICAL",
+          "category": "Vector",
+          "mitre_code": "T1566.003",
+          "mitre_tactic": "Initial Access (Quishing Physical Vector)",
+          "risk_score": 100,
+          "status": "ACTIVE",
+          "metadata": {
+            "event_id": "EVT-CAM-02",
+            "source": "qr_decoder",
+            "timestamp": "2026-10-08T16:15:26.493Z",
+            "indicators_count": 3,
+            "raw_text_snippet": "Scanned Physical QR Poster leading to deceptive domain https://pmec-exam-support.com/student-portal/auth-verify"
+          },
+          "blast_radius": 3
+        }
+      ],
+      "graph_edges": [
+        {
+          "id": "edge-inc-EVT-DOM-WFYE-03",
+          "source": "evt-EVT-DOM-WFYE-03",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-DOM-WFYE-03",
+          "source": "evt-EVT-DOM-WFYE-03",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-DOM-WFYE-03",
+          "source": "sender-drsknayak-pmec@gmail.com",
+          "target": "evt-EVT-DOM-WFYE-03",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-claim-EVT-DOM-WFYE-03",
+          "source": "sender-drsknayak-pmec@gmail.com",
+          "target": "ident-Dr._S._K._Nayak",
+          "relationship": "claims_identity",
+          "label": "impersonates authority",
+          "category": "identity",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-DOM-WFYE-02",
+          "source": "evt-EVT-DOM-WFYE-02",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-DOM-WFYE-02",
+          "source": "evt-EVT-DOM-WFYE-02",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-DOM-WFYE-02",
+          "source": "evt-EVT-DOM-WFYE-02",
+          "target": "url-https://pmec-portal-auth-verif",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-DOM-WFYE-02",
+          "source": "url-https://pmec-portal-auth-verif",
+          "target": "domain-pmec-portal-auth-verification.xyz",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUZWBKW4-610",
+          "source": "evt-EVT-MUZWBKW4-610",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZWBKW4-610",
+          "source": "evt-EVT-MUZWBKW4-610",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-MUZWBKW4-610",
+          "source": "sender-drsknayak-urgent-desk@gmail.com",
+          "target": "evt-EVT-MUZWBKW4-610",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-claim-EVT-MUZWBKW4-610",
+          "source": "sender-drsknayak-urgent-desk@gmail.com",
+          "target": "ident-Dr._S._K._Nayak",
+          "relationship": "claims_identity",
+          "label": "impersonates authority",
+          "category": "identity",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-MUZW52RX-780",
+          "source": "evt-EVT-MUZW52RX-780",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZW52RX-780",
+          "source": "evt-EVT-MUZW52RX-780",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUZW52RX-780",
+          "source": "evt-EVT-MUZW52RX-780",
+          "target": "url-https://stanford-portal-auth.x",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-MUZW52RX-780",
+          "source": "url-https://stanford-portal-auth.x",
+          "target": "domain-stanford-portal-auth.xyz",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUZSM7HL-295",
+          "source": "evt-EVT-MUZSM7HL-295",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZSM7HL-295",
+          "source": "evt-EVT-MUZSM7HL-295",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUZSM7HL-295",
+          "source": "evt-EVT-MUZSM7HL-295",
+          "target": "url-https://pmec-exam-support.com/",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-MUZSM7HL-295",
+          "source": "url-https://pmec-exam-support.com/",
+          "target": "domain-pmec-exam-support.com",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUZSJVCS-152",
+          "source": "evt-EVT-MUZSJVCS-152",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZSJVCS-152",
+          "source": "evt-EVT-MUZSJVCS-152",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-MUZSJVCS-152",
+          "source": "sender-+91-9876543210",
+          "target": "evt-EVT-MUZSJVCS-152",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUZSJI5W-428",
+          "source": "evt-EVT-MUZSJI5W-428",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZSJI5W-428",
+          "source": "evt-EVT-MUZSJI5W-428",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUZSJI5W-428",
+          "source": "evt-EVT-MUZSJI5W-428",
+          "target": "url-http://non-existent-phish-999.",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-MUZSJI5W-428",
+          "source": "url-http://non-existent-phish-999.",
+          "target": "domain-non-existent-phish-999.xyz",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUZRYS59-787",
+          "source": "evt-EVT-MUZRYS59-787",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRYS59-787",
+          "source": "evt-EVT-MUZRYS59-787",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUZRU577-612",
+          "source": "evt-EVT-MUZRU577-612",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRU577-612",
+          "source": "evt-EVT-MUZRU577-612",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUZRU56X-151",
+          "source": "evt-EVT-MUZRU56X-151",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRU56X-151",
+          "source": "evt-EVT-MUZRU56X-151",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUZRU56X-151",
+          "source": "evt-EVT-MUZRU56X-151",
+          "target": "url-https://pmec-login.fake.org",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-MUZRU56E-618",
+          "source": "evt-EVT-MUZRU56E-618",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRU56E-618",
+          "source": "evt-EVT-MUZRU56E-618",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-MUZRU56E-618",
+          "source": "sender-principal@gmail.com",
+          "target": "evt-EVT-MUZRU56E-618",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-claim-EVT-MUZRU56E-618",
+          "source": "sender-principal@gmail.com",
+          "target": "ident-Principal_PMEC",
+          "relationship": "claims_identity",
+          "label": "impersonates authority",
+          "category": "identity",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-MUZRU563-136",
+          "source": "evt-EVT-MUZRU563-136",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUZRU563-136",
+          "source": "evt-EVT-MUZRU563-136",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUZRU563-136",
+          "source": "evt-EVT-MUZRU563-136",
+          "target": "url-https://bput-exam-desk.xyz/ver",
+          "relationship": "contains",
+          "label": "decodes to URL",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-MUZRU563-136",
+          "source": "url-https://bput-exam-desk.xyz/ver",
+          "target": "domain-bput-exam-desk.xyz",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-MUWZ3LLZ-825",
+          "source": "evt-EVT-MUWZ3LLZ-825",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWZ3LLZ-825",
+          "source": "evt-EVT-MUWZ3LLZ-825",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUWZ3LLZ-825",
+          "source": "evt-EVT-MUWZ3LLZ-825",
+          "target": "url-https://pmec-login-help.net",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-MUWZ3LLF-975",
+          "source": "evt-EVT-MUWZ3LLF-975",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWZ3LLF-975",
+          "source": "evt-EVT-MUWZ3LLF-975",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-MUWZ3LLF-975",
+          "source": "sender-vc.pmec.official@gmail.com",
+          "target": "evt-EVT-MUWZ3LLF-975",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-claim-EVT-MUWZ3LLF-975",
+          "source": "sender-vc.pmec.official@gmail.com",
+          "target": "ident-Vice_Chancellor",
+          "relationship": "claims_identity",
+          "label": "impersonates authority",
+          "category": "identity",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-MUWZ2ZW8-997",
+          "source": "evt-EVT-MUWZ2ZW8-997",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWZ2ZW8-997",
+          "source": "evt-EVT-MUWZ2ZW8-997",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWZ2WB2-378",
+          "source": "evt-EVT-MUWZ2WB2-378",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWZ2WB2-378",
+          "source": "evt-EVT-MUWZ2WB2-378",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY8K5Z-964",
+          "source": "evt-EVT-MUWY8K5Z-964",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY8K5Z-964",
+          "source": "evt-EVT-MUWY8K5Z-964",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY7UR3-159",
+          "source": "evt-EVT-MUWY7UR3-159",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY7UR3-159",
+          "source": "evt-EVT-MUWY7UR3-159",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY7PZN-681",
+          "source": "evt-EVT-MUWY7PZN-681",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY7PZN-681",
+          "source": "evt-EVT-MUWY7PZN-681",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY7K48-950",
+          "source": "evt-EVT-MUWY7K48-950",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY7K48-950",
+          "source": "evt-EVT-MUWY7K48-950",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY6Q80-211",
+          "source": "evt-EVT-MUWY6Q80-211",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY6Q80-211",
+          "source": "evt-EVT-MUWY6Q80-211",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-inc-EVT-MUWY4T6W-692",
+          "source": "evt-EVT-MUWY4T6W-692",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-MUWY4T6W-692",
+          "source": "evt-EVT-MUWY4T6W-692",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-MUWY4T6W-692",
+          "source": "evt-EVT-MUWY4T6W-692",
+          "target": "url-https://pmec-exam-support.com/",
+          "relationship": "contains",
+          "label": "embeds link",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-MUWY4T6W-692",
+          "source": "url-https://pmec-exam-support.com/",
+          "target": "domain-unknown",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-inc-EVT-CAM-05",
+          "source": "evt-EVT-CAM-05",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-CAM-05",
+          "source": "evt-EVT-CAM-05",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-login-EVT-CAM-05",
+          "source": "evt-EVT-CAM-05",
+          "target": "ip-194.26.29.112",
+          "relationship": "logged_in_from",
+          "label": "connection origin",
+          "category": "infra",
+          "weight": 0.88
+        },
+        {
+          "id": "edge-device-EVT-CAM-05",
+          "source": "evt-EVT-CAM-05",
+          "target": "device-Firefox on Linux (Ka",
+          "relationship": "uses_device",
+          "label": "client fingerprint",
+          "category": "infra",
+          "weight": 0.75
+        },
+        {
+          "id": "edge-inc-EVT-CAM-04",
+          "source": "evt-EVT-CAM-04",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-CAM-04",
+          "source": "evt-EVT-CAM-04",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-login-EVT-CAM-04",
+          "source": "evt-EVT-CAM-04",
+          "target": "ip-185.220.101.4",
+          "relationship": "logged_in_from",
+          "label": "connection origin",
+          "category": "infra",
+          "weight": 0.88
+        },
+        {
+          "id": "edge-device-EVT-CAM-04",
+          "source": "evt-EVT-CAM-04",
+          "target": "device-Hydra/9.2",
+          "relationship": "uses_device",
+          "label": "client fingerprint",
+          "category": "infra",
+          "weight": 0.75
+        },
+        {
+          "id": "edge-inc-EVT-CAM-03",
+          "source": "evt-EVT-CAM-03",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-CAM-03",
+          "source": "evt-EVT-CAM-03",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-sent-EVT-CAM-03",
+          "source": "sender-registrar-pmec-support@gmail.com",
+          "target": "evt-EVT-CAM-03",
+          "relationship": "sent_by",
+          "label": "dispatched lure",
+          "category": "flow",
+          "weight": 0.85
+        },
+        {
+          "id": "edge-claim-EVT-CAM-03",
+          "source": "sender-registrar-pmec-support@gmail.com",
+          "target": "ident-Dr._S._K._Nayak",
+          "relationship": "claims_identity",
+          "label": "impersonates authority",
+          "category": "identity",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-inc-EVT-CAM-02",
+          "source": "evt-EVT-CAM-02",
+          "target": "inc-CG-0001",
+          "relationship": "correlated_in",
+          "label": "correlated into",
+          "category": "causal",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-target-EVT-CAM-02",
+          "source": "evt-EVT-CAM-02",
+          "target": "user-student042",
+          "relationship": "targets",
+          "label": "targets victim",
+          "category": "flow",
+          "weight": 0.95
+        },
+        {
+          "id": "edge-contains-EVT-CAM-02",
+          "source": "evt-EVT-CAM-02",
+          "target": "url-https://pmec-exam-support.com/",
+          "relationship": "contains",
+          "label": "decodes to URL",
+          "category": "infra",
+          "weight": 0.9
+        },
+        {
+          "id": "edge-redirect-EVT-CAM-02",
+          "source": "url-https://pmec-exam-support.com/",
+          "target": "domain-pmec-exam-support.com",
+          "relationship": "redirects_to",
+          "label": "resolves to host",
+          "category": "infra",
+          "weight": 0.85
+        }
+      ],
+      "recommended_actions": [
+        {
+          "action_id": "QUARANTINE_SYNTHETIC_BROADCAST",
+          "title": "Quarantine Synthetic Voice / Video Broadcast",
+          "description": "Issue institutional broadcast advisory countering synthetic media spoofing and block VoIP/media channels",
+          "criticality": "CRITICAL",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "VERIFY_OUT_OF_BAND_VOICE",
+          "title": "Enforce Dual-Custodian In-Person Verification",
+          "description": "Require physical or cryptographic token authorization before processing any financial, treasury, or exam policy directives",
+          "criticality": "CRITICAL",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "REVOKE_USER_SESSIONS",
+          "title": "Revoke Active User Sessions",
+          "description": "Forcefully invalidate active SSO and JWT web session tokens for user student042",
+          "criticality": "CRITICAL",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "ENFORCE_STEPUP_MFA",
+          "title": "Require Step-Up Hardware MFA",
+          "description": "Lock account pending out-of-band verification and require FIDO2 / authenticator MFA reset",
+          "criticality": "CRITICAL",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "BLOCK_SPOOFED_DOMAINS",
+          "title": "Add Look-Alike Domains to Institutional DNS Sinkhole",
+          "description": "Propagate deceptive look-alike domains to campus perimeter firewall and DNS sinkholes",
+          "criticality": "STANDARD",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "QUARANTINE_CAMPAIGN_MESSAGES",
+          "title": "Quarantine Cross-Channel Campaign Inbound Mail",
+          "description": "Retract received phishing lures from all student and staff inboxes campus-wide",
+          "criticality": "STANDARD",
+          "status": "RECOMMENDED"
+        },
+        {
+          "action_id": "NOTIFY_CAMPUS_SECURITY_OFFICER",
+          "title": "Notify Campus Cyber Defense Incident Response Team",
+          "description": "Transmit structured evidence dossier and timeline to SOC security administrators",
+          "criticality": "STANDARD",
+          "status": "RECOMMENDED"
+        }
+      ],
+      "audit_history": []
+    }
+  ],
+  "audit_logs": [],
+  "user_baselines": {
+    "student042": {
+      "home_location": "Berhampur, Odisha, IN",
+      "normal_device": "Chrome on macOS (MacBook Pro)",
+      "active_hours": [
+        7,
+        23
+      ],
+      "normal_ip": "14.139.221.14"
+    },
+    "student108": {
+      "home_location": "Bhubaneswar, Odisha, IN",
+      "normal_device": "Firefox on Windows 11",
+      "active_hours": [
+        8,
+        22
+      ],
+      "normal_ip": "14.139.221.45"
+    },
+    "faculty015": {
+      "home_location": "Berhampur, Odisha, IN",
+      "normal_device": "Safari on iPadOS",
+      "active_hours": [
+        8,
+        20
+      ],
+      "normal_ip": "14.139.221.80"
+    }
+  }
+}

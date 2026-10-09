@@ -1,0 +1,6 @@
+{
+  "name": "CYBERGUARD - Institutional Digital Trust & Cyber Defence",
+  "description": "AI-Powered Cyber Threat, Phishing & Digital Impersonation Detection and Response System with Institutional Digital Trust and Cross-Channel Incident Correlation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

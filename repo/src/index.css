@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --bg-base: #08090D;
+    --bg-surface: #0E1118;
+    --bg-elevated: #151924;
+    --bg-inset: #05060A;
+    --border-hairline: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #08090D;
+    color: #F8FAFC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Safe area padding for modern mobile devices */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+}
+
+/* Typography fallbacks */
+.font-sans {
+  font-family: var(--font-sans) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Discreet modern scrollbar for dense SOC telemetry */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #202636;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333D52;
+}
+
+/* Utility to hide scrollbar on swipeable tab bars while maintaining touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Atmospheric High-End Monochromatic SOC Background */
+.bg-mesh-dark {
+  background-color: #08090D;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(244, 63, 94, 0.04) 0%, transparent 45%),
+    linear-gradient(to bottom, rgba(8, 9, 13, 0.95), rgba(8, 9, 13, 1));
+}
+
+.bg-cyber-grid {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Enterprise Monochromatic Surface Utilities */
+.bg-soc-base {
+  background-color: #08090D;
+}
+
+.bg-soc-surface {
+  background-color: #0E1118;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bg-soc-elevated {
+  background-color: #151924;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bg-soc-inset {
+  background-color: #05060A;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* High-contrast crisp cards */
+.soc-card {
+  background-color: #0E1118;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.soc-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Crisp button styling */
+.btn-primary-white {
+  background-color: #FFFFFF;
+  color: #08090D;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.btn-primary-white:hover {
+  background-color: #E2E8F0;
+}
+.btn-primary-white:active {
+  transform: scale(0.98);
+}
+
+/* Subtle glow effects */
+.glow-white {
+  box-shadow: 0 0 20px -2px rgba(255, 255, 255, 0.15);
+}
+
+.glow-red {
+  box-shadow: 0 0 24px -2px rgba(244, 63, 94, 0.25);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 24px -2px rgba(16, 185, 129, 0.25);
+}
+
+/* Pulse animation for active incidents */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.5s infinite ease-in-out;
+}
+
+/* Animated flow along attack graph edges */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.animate-flow-dash {
+  animation: flow-dash 1.4s linear infinite;
+}
+
+/* Floating ambient levitation keyframes */
+@keyframes levitate {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+.animate-float {
+  animation: levitate 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   iPhone / iOS Visual Language Utilities
+   Frosted glass materials, tactile micro-interactions, squircle corners
+   ========================================================================== */
+
+.ios-glass {
+  background: rgba(13, 17, 28, 0.72);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ios-glass-card {
+  background: rgba(18, 23, 38, 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(22, 28, 46, 0.75);
+}
+
+/* iOS Widget Squircle Card */
+.ios-widget {
+  background: rgba(16, 21, 36, 0.75);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-widget:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* iOS Segmented Track */
+.ios-segmented-track {
+  background: rgba(22, 26, 38, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.875rem;
+  padding: 3px;
+  display: inline-flex;
+}
+
+/* iOS Pressable with tactile spring haptic */
+.ios-pressable {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, filter 0.15s ease;
+}
+
+.ios-pressable:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.ios-grabber {
+  width: 38px;
+  height: 4.5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  margin: 0 auto 12px auto;
+}
+
+/* Authentic iOS Toggle Switch */
+.ios-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 50px;
+  height: 30px;
+  border-radius: 9999px;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ios-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-switch.active {
+  background-color: #34C759; /* Apple iOS Green */
+}
+
+.ios-switch.active .ios-switch-thumb {
+  transform: translateX(20px);
+}
+
+.ios-switch.inactive {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Inset Grouped Table Rows (Apple Settings Style) */
+.ios-grouped-card {
+  background: rgba(16, 21, 35, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.ios-grouped-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.15s ease;
+}
+
+.ios-grouped-row:last-child {
+  border-bottom: none;
+}
+
+.ios-grouped-row:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* iOS Search Field */
+.ios-search-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.875rem 0.5rem 2.25rem;
+  font-size: 0.875rem;
+  color: #FFFFFF;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-search-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+
+
